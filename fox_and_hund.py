@@ -334,7 +334,7 @@ class FoxAndHounds:
 # ========== LANCER UNE PARTIE ==========
 if __name__ == "__main__":
     print("=== FOX AND HOUNDS ===")
-    print("Bienvenue dans le jeu Fox and Hounds Implémenté par les 3M Mate, Mamadou et Mouhamadou!")
+    print("Bienvenue dans le jeu Fox and Hounds Implémenté par les 3M Matt, Mamadou et Mouhamadou!")
     print()
     
     # Demander la taille du plateau à l'utilisateur
