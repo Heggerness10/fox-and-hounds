@@ -315,12 +315,11 @@ class FoxAndHounds:
             # Étape 3 : Demander au joueur de choisir un hound
             hound_index = -1
             while hound_index not in movable_hounds:
-                try:
-                    choice = int(input("Choose a hound : "))
-                    hound_index = choice - 1  # Ajuster pour l'index (0-based)
-                except ValueError:
-                    pass  # Redemander si ce n'est pas un nombre
-
+                choice_input = input("Choose a hound : ")
+                if choice_input.isdigit():
+                    hound_index = int(choice_input) - 1
+                else:
+                    hound_index = -1
             # Étape 4 : Déplacer le hound choisi
             print(f"Hound n°{hound_index + 1} to move :")
             self.__hounds[hound_index].move(self.__board)
@@ -334,21 +333,24 @@ class FoxAndHounds:
 # ========== LANCER UNE PARTIE ==========
 if __name__ == "__main__":
     print("=== FOX AND HOUNDS ===")
-    print("Bienvenue dans le jeu Fox and Hounds Implémenté par les 3M Matt, Mamadou et Mouhamadou!")
+    print("Bienvenue dans le jeu Fox and Hounds Implémenté par les 3M Mate, Mamadou et Mouhamadou!")
     print()
     
     # Demander la taille du plateau à l'utilisateur
     while True:
-        try:
-            size = int(input("Choisissez la taille du plateau (ex: 4, 8, 12...) : "))
+        size_input = input("Choisissez la taille du plateau (ex: 4, 8, 12...) : ")
+        
+        # Vérifier si c'est un nombre
+        if size_input.isdigit():
+            size = int(size_input)
             if size > 0:
-                break
+                break  # Taille valide
             else:
                 print("La taille doit être positive !")
-        except ValueError:
+        else:
             print("Veuillez entrer un nombre valide.")
-    
-    print()
+
+        print()
     
     # Créer la partie (GameBoard ajustera automatiquement si nécessaire)
     game = FoxAndHounds(size)
@@ -358,6 +360,5 @@ if __name__ == "__main__":
     if actual_size != size:
         print(f"La taille {size} n'est pas un multiple de 4.")
         print(f"Le plateau a été ajusté à {actual_size}x{actual_size}.")
-        print()
     
     game.play()
